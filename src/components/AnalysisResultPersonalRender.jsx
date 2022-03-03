@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import _ from "lodash";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import ToastNotifications from "cogo-toast";
 
 // icons
 import bookIconWhite from "../images/icon_openBook_white.svg";
@@ -74,6 +75,7 @@ const AnalysisResultPersonalRender = props => {
   } = props;
 
   const [showSaveModal, setShowSaveModal] = useState(false);
+
   const LoadingOverlay = useLoadingOverlay();
 
   const resultConfig = configuration;
@@ -224,13 +226,21 @@ const AnalysisResultPersonalRender = props => {
       lastNames.push(personalAnalysisCompareResult.lastName);
     }
 
-    props.history.push(
-      `/userHome/saveAnalysis/${encodeURIComponent(
-        firstNames
-      )}/${encodeURIComponent(lastNames)}/${encodeURIComponent(
-        personalAnalysisResult.dateOfBirth
-      )}`
-    );
+    !User?.user?.currentUser
+      ? props.history.push(
+          `/login?redirect=/userHome/saveAnalysis/${encodeURIComponent(
+            firstNames
+          )}/${encodeURIComponent(lastNames)}/${encodeURIComponent(
+            personalAnalysisResult.dateOfBirth
+          )}`
+        )
+      : props.history.push(
+          `/userHome/saveAnalysis/${encodeURIComponent(
+            firstNames
+          )}/${encodeURIComponent(lastNames)}/${encodeURIComponent(
+            personalAnalysisResult.dateOfBirth
+          )}`
+        );
   };
 
   const handleClose = () => {

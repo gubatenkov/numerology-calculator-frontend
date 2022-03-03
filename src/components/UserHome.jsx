@@ -78,7 +78,7 @@ const UserHome = props => {
 
       LoadingOverlay.hide();
 
-      props.history.push("/userHome");
+      props.history.push("/userHome?=");
 
       ToastNotifications.success(
         t("TOAST.ANALYSIS_CREATED_SUCCESSFULLY", {

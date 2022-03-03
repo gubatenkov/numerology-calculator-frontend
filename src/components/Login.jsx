@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useLocation, withRouter } from "react-router-dom";
 import ToastNotifications from "cogo-toast";
 import { useTranslation } from "react-i18next";
 import Panel from "./Panel";
@@ -16,8 +16,8 @@ const Login = props => {
   const LoadingOverlay = useLoadingOverlay();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { fetchUser, currentLanguage } = useUser();
+  const location = useLocation();
   const loginUser = async () => {
     const { history } = props;
     try {
@@ -34,7 +34,12 @@ const Login = props => {
         token: response.token
       });
       await fetchUser();
-      history.push("/userHome");
+      if (location?.search) {
+        const redirectTo = location.search.split("redirect=")[1];
+        history.push(redirectTo);
+      } else {
+        history.push("/userHome");
+      }
     } catch (error) {
       ToastNotifications.error(t("LOGIN_FAILED"), { position: "top-right" });
     } finally {
