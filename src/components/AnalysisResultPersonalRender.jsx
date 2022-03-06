@@ -6,7 +6,6 @@ import { withRouter } from "react-router-dom";
 import _ from "lodash";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import ToastNotifications from "cogo-toast";
 
 // icons
 import bookIconWhite from "../images/icon_openBook_white.svg";
