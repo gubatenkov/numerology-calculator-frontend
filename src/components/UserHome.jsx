@@ -147,6 +147,7 @@ const UserHome = props => {
         isOpen={saveDialogOpen}
         onClose={() => setSaveDialogOpen(false)}
         onSave={group => {
+          console.log(group);
           const firstNames = decodeURIComponent(
             props.computedMatch.params.firstNames
           );

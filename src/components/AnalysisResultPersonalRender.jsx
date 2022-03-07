@@ -22,7 +22,6 @@ import ResultPanel from "./ResultPanel";
 import ResultTable from "./ResultTable";
 import TourView from "./TourView";
 import TextButton from "./Buttons/TextButton";
-import IconButton from "./Buttons/IconButton";
 import NameInputDialog from "./dialogs/NameInputDialog";
 import Footer from "./Footer";
 import CreditsBuyModal from "./CreditsBuy/CreditsBuyModal";
@@ -280,8 +279,9 @@ const AnalysisResultPersonalRender = props => {
             title={t("COMPARE_NAME")}
             onClick={() => setIsNameDialogOpen(true)}
           />
-          <IconButton
-            imageIcon={saveIconPrimary}
+          <TextButton
+            icon={saveIconPrimary}
+            title={t("SAVE")}
             onClick={() => handleSaveAnalysis()}
           />
           <TextButton
