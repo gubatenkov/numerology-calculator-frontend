@@ -18,6 +18,7 @@ const Login = props => {
   const [password, setPassword] = useState("");
   const { fetchUser, currentLanguage } = useUser();
   const location = useLocation();
+
   const loginUser = async () => {
     const { history } = props;
     try {

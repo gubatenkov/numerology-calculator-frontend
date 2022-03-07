@@ -228,6 +228,12 @@ const NavigationBar = props => {
     props.history.push("/login");
   };
 
+  const handleLeftIconButtonClick = () => {
+    User?.isAnalResultWasSaved
+      ? props.history.push("/userHome")
+      : props.leftButtonOnClick();
+  };
+
   const settingsPopup = (
     <Popover>
       <PopoverSettingsContent>
@@ -329,7 +335,7 @@ const NavigationBar = props => {
       {props.leftButtonIcon && (
         <LeftIconButton
           imageIcon={props.leftButtonIcon}
-          onClick={props.leftButtonOnClick}
+          onClick={handleLeftIconButtonClick}
         />
       )}
 

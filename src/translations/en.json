@@ -16,8 +16,8 @@
     },
     "DIALOG": {
       "SAVE_ANALYSIS": "en_Analyse speichern",
-      "YES_SAVE": "en_Ja, bitte speichern",
-      "SAVE_BEFORE_LEAVING": "en_Wollen Sie diese Analyse vor dem Verlassen der Seite speichern?",
+      "YES_SAVE": "en_Bleiben und behalten",
+      "SAVE_BEFORE_LEAVING": "en_Sind Sie sicher, dass Sie die Seite verlassen wollen, ohne die Analyseergebnisse zu speichern?",
       "DELETE_ANALYSIS": "en_Analyse löschen",
       "SURE_TO_DELETE_NAME": "en_Sind Sie sicher, dass Sie die Analyse {{name}} löschen wollen?",
       "DELETE_GROUP": "en_Gruppe löschen",
@@ -81,6 +81,7 @@
     "CANCEL": "en_Abbrechen",
     "DELETE": "en_Löschen",
     "NO": "en_Nein",
+    "LEAVE": "en_Verlassen Sie",
     "YES": "en_Ja",
     "BIRTH_DATE": "en_Geburtsdatum",
     "BIRTHNAME_ALT_NAME": "en_Geburtsname / Alternativer Name",
