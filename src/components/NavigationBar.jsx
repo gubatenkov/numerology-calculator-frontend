@@ -225,7 +225,7 @@ const NavigationBar = props => {
 
   const handleLogout = () => {
     User.logoutUser();
-    props.history.push("/login");
+    props.history.push("/");
   };
 
   const handleLeftIconButtonClick = () => {
@@ -381,8 +381,14 @@ const NavigationBar = props => {
           title={props.register ? t("REGISTER") : t("SIGN_IN")}
           onClick={
             props.register
-              ? () => props.history.push("/register")
-              : () => props.history.push("/login")
+              ? () =>
+                  props.history.push(
+                    `/register?redirect=${props.history.location.pathname}`
+                  )
+              : () =>
+                  props.history.push(
+                    `/login?redirect=${props.history.location.pathname}`
+                  )
           }
         />
       )}
