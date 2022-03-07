@@ -235,6 +235,7 @@ const CreditsBuyModal = props => {
           </Button>
           {!isSuccess && (
             <a
+              href="!#"
               ref={buyLinkRef}
               target="_blank"
               variant="primary"
