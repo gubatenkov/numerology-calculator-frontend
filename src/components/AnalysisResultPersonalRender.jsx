@@ -292,13 +292,7 @@ const AnalysisResultPersonalRender = props => {
     }
   }
 
-  const handleSaveBtnClick = () => {
-    if (!user) {
-      props.history.push(`/login?redirect=${props.history.location.pathname}`);
-    } else {
-      setSaveDialogOpen(true);
-    }
-  };
+  const handleSaveBtnClick = () => setSaveDialogOpen(true);
 
   LoadingOverlay.hide();
 

@@ -16,6 +16,7 @@
     },
     "DIALOG": {
       "SAVE_ANALYSIS": "en_Analyse speichern",
+      "PLEASE_LOGIN": "en_Um die Ergebnisse einer Numerologie-Analyse zu speichern, müssen Sie sich zunächst einloggen",
       "YES_SAVE": "en_Bleiben und behalten",
       "SAVE_BEFORE_LEAVING": "en_Sind Sie sicher, dass Sie die Seite verlassen wollen, ohne die Analyseergebnisse zu speichern?",
       "DELETE_ANALYSIS": "en_Analyse löschen",

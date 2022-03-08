@@ -1,27 +1,60 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useTranslation } from "react-i18next";
-import Dialog from "./Dialog";
 import { Spinner } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
 
-const SaveAnalysisDialog = props => {
+import Dialog from "./Dialog";
+import { useUser } from "../../contexts/UserContext";
+
+const SaveAnalysisDialog = ({ groups, onSave, onClose, isOpen }) => {
   const { t } = useTranslation();
-  const [selectedGroup, setSelectedGroup] = useState(
-    props.groups ? props.groups[0] : null
-  );
+  const history = useHistory();
+  const User = useUser();
+  const [isUserAuthorized, setIsUserAuthorized] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState(groups ? groups[0] : null);
+
+  useEffect(() => {
+    if (User?.user) {
+      setIsUserAuthorized(true);
+    } else {
+      setIsUserAuthorized(false);
+    }
+  }, [User, User.user]);
+
+  const handleAction = () =>
+    isUserAuthorized
+      ? onSave(selectedGroup)
+      : history.push(`/login?redirect=${history.location.pathname}`);
 
   return (
     <Dialog
-      isOpen={props.isOpen}
-      onClose={props.onClose}
-      onAction={() => props.onSave(selectedGroup)}
+      isOpen={isOpen}
+      onClose={onClose}
+      onAction={handleAction}
       title={t("DIALOG.SAVE_ANALYSIS")}
       cancelTitle={t("CANCEL")}
       actionTitle={t("YES")}
     >
+      {isUserAuthorized ? (
+        <DialogForAuthUser
+          groups={groups}
+          setSelectedGroup={setSelectedGroup}
+        />
+      ) : (
+        <DialogForNotAuthUser />
+      )}
+    </Dialog>
+  );
+};
+
+function DialogForAuthUser({ groups, setSelectedGroup }) {
+  const { t } = useTranslation();
+  return (
+    <>
       <p>{t("GROUP")}</p>
       <div className="dropdown">
-        {!props.groups?.length ? (
+        {!groups?.length ? (
           <Spinner
             animation="border"
             role="status"
@@ -33,11 +66,11 @@ const SaveAnalysisDialog = props => {
             className="form-control"
             onChange={newSelect => {
               setSelectedGroup(
-                props.groups.find(item => item.name === newSelect.target.value)
+                groups.find(item => item.name === newSelect.target.value)
               );
             }}
           >
-            {props.groups.map(item => {
+            {groups.map(item => {
               const name = item.isDefault
                 ? t(`GROUP_NAMES.${item.name}`)
                 : item.name;
@@ -53,9 +86,14 @@ const SaveAnalysisDialog = props => {
       <p>
         <small>{t("DIALOG.CHOOSE_GROUP")}</small>
       </p>
-    </Dialog>
+    </>
   );
-};
+}
+
+function DialogForNotAuthUser() {
+  const { t } = useTranslation();
+  return <p>{t("DIALOG.PLEASE_LOGIN")}</p>;
+}
 
 SaveAnalysisDialog.propTypes = {
   groups: PropTypes.arrayOf(

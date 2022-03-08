@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Link, withRouter } from "react-router-dom";
+import { Link, useLocation, withRouter } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import ToastNotifications from "cogo-toast";
 import Panel from "./Panel";
@@ -22,6 +22,7 @@ const Register = props => {
   const [readyToSubmit, setReadyToSubmit] = useState(false);
   const { t } = useTranslation();
   const LoadingOverlay = useLoadingOverlay();
+  const location = useLocation();
 
   // WORKAROUND: setting background of whole doc upon mount/unmount
   useEffect(() => {
@@ -44,7 +45,12 @@ const Register = props => {
 
       setUserAuthData({ email, token: response.token });
       await User.fetchUser();
-      history.push("/userHome");
+      if (location?.search && location.search?.split("redirect=")?.length > 1) {
+        const redirectTo = location.search.split("redirect=")[1];
+        history.push(redirectTo);
+      } else {
+        history.push("/userHome");
+      }
     } catch (error) {
       console.log("Reg failed:", error.message);
       ToastNotifications.error(t("REGISTRATION_FAILED"), {
@@ -127,9 +133,6 @@ const Register = props => {
                   {t("REGISTER")}
                 </button>
                 <div className="InputForm__options">
-                  <Link to="/reset">
-                    <h6>{t("PASSWORD_RESET")}</h6>
-                  </Link>
                   <Link to="/login">
                     <h6>{t("SIGN_IN")}</h6>
                   </Link>

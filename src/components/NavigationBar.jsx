@@ -225,7 +225,6 @@ const NavigationBar = props => {
 
   const handleLogout = () => {
     User.logoutUser();
-    props.history.push("/");
   };
 
   const handleLeftIconButtonClick = () => {

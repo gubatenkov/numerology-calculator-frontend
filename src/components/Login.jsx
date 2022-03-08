@@ -35,7 +35,7 @@ const Login = props => {
         token: response.token
       });
       await fetchUser();
-      if (location?.search) {
+      if (location?.search && location.search?.split("redirect=")?.length > 1) {
         const redirectTo = location.search.split("redirect=")[1];
         history.push(redirectTo);
       } else {
@@ -55,6 +55,12 @@ const Login = props => {
       document.body.style.backgroundColor = null;
     };
   });
+
+  const handleRedirect = () => {
+    if (location.search?.split("redirect=")?.length > 1) {
+      return `?redirect=${decodeURI(location.search.split("redirect=")[1])}`;
+    }
+  };
 
   return (
     <div className="page-register-v3 layout-full">
@@ -92,10 +98,10 @@ const Login = props => {
                   {t("SIGN_IN")}
                 </button>
                 <div className="InputForm__options">
-                  <Link to="/reset">
+                  <Link to={() => `/reset${handleRedirect()}`}>
                     <h6>{t("RESET_PASSWORD")}</h6>
                   </Link>
-                  <Link to="/register">
+                  <Link to={() => `/register${handleRedirect()}`}>
                     <h6>{t("REGISTER")}</h6>
                   </Link>
                 </div>
