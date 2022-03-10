@@ -31,8 +31,13 @@ const StyledInput = styled.input`
   font-family: inherit;
 
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: ${props => {
+    console.log(props);
 
+    return props.message?.length
+      ? "1px solid rgb(255, 0, 0)"
+      : "1px solid rgba(0, 0, 0, 0.05)";
+  }};
   :focus {
     outline: none;
     border: 1px solid rgba(1, 133, 254, 0.7);
@@ -75,6 +80,7 @@ const Input = ({ label, register, message = "", ...restProps }) => {
       <StyledInput
         id={`input${id}`}
         aria-label={label}
+        message={message}
         {...restProps}
         {...register()}
       />
