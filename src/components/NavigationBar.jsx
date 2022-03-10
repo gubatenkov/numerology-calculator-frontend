@@ -259,14 +259,13 @@ const NavigationBar = props => {
               }
             />
           </SegmentContainer>
-          <SwitchSettingItem
+          {/* <SwitchSettingItem
             title={t("USER_SETTINGS.PAGE_TO_LOOK_UP")}
             onChange={newValue =>
               setUserSettings({ ...userSettings, showBookReferences: newValue })
             }
-            checked={/* userSettings.showBookReferences */ false}
-            disabled={true}
-          />
+            checked={false} // userSettings.showBookReferences 
+            disabled={true} /> */}
           <SwitchSettingItem
             title={t("USER_SETTINGS.BOOK_REF")}
             onChange={newValue =>
