@@ -89,7 +89,15 @@
     "SHOW_COMPARE_NAME": "en_Vergleichsnamen einblenden",
     "HIDE_COMPARE_NAME": "en_Vergleichsnamen ausblenden",
     "SIGN_IN": "en_Anmelden",
+    "HAVE_ACCOUNT?": "en_Sie haben bereits ein Konto?",
+    "I_HAVE_READ_AND_AGREE": "en_Ich habe gelesen und bin einverstanden mit",
+    "AND": "en_und",
     "REGISTER": "en_Registrieren",
+    "EMAIL_CANT_BE_MORE_128": "en_E-Mail darf nicht mehr als 128 buchstaben haben",
+    "PASS_CANT_BE_MORE_128": "en_Das Passwort darf nicht mehr als 128 Zeichen enthalten",
+    "PASS_CANT_BE_LESS_8": "en_Passwort, darf nicht weniger als 8 buchstaben haben",
+    "MIN_8_LETTERS": "en_mindestens 8 buchstaben",
+    "ENTER_EXISTING_EMAIL": "en_Bitte geben Sie eine bestehende E-Mail ein",
     "START": "en_Starten",
     "DOWNLOAD_PDF_SHORT": "en_Kurzes PDF herunterladen",
     "DOWNLOAD_PDF_LONG": "en_Langes PDF herunterladen",
@@ -202,6 +210,7 @@
       "FAQ": "en_FAQ",
       "CONTACT": "en_Kontakt"
     },
-    "DOWNLOADING_PDF": "en_Das Analyse-PDF wird heruntergeladen..."
+    "DOWNLOADING_PDF": "en_Das Analyse-PDF wird heruntergeladen...",
+    "FIELD_REQUIRED": "en_Dieses feld ist erforderlich"
   }
 }
