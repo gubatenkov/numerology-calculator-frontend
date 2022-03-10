@@ -29,27 +29,36 @@ const Register = ({ history }) => {
   const location = useLocation();
   const { t } = useTranslation();
   const LoadingOverlay = useLoadingOverlay();
-  const [emailValidators, passwordValidators] = useValidators();
+  const [
+    emailValidators,
+    passwordValidators,
+    password2Validators
+  ] = useValidators();
   const [isPrivacyChecked, setPrivacyChecked] = useState(false);
   const [isReadyToSubmit, setReadyToSubmit] = useState(false);
   const [isTermsPopupOpen, setTermsPopupOpen] = useState(false);
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     getValues
   } = useForm({ mode: "all" });
   const formValues = getValues();
+  password2Validators.validate = value => {
+    return value === watch("password", "") || t("PASSWORDS_DONT_MATCH");
+  };
 
   useEffect(() => {
     // here we check is form ready to be submited
     function isFormReadyToSubmit(isPrivacyChecked, errors) {
-      const { email, password } = getValues();
+      const { email, password, password2 } = getValues();
       if (
-        email.trim() &&
-        password.trim() &&
+        email &&
+        password &&
         !errors?.email?.message &&
         !errors?.password?.message &&
+        password === password2 &&
         isPrivacyChecked
       ) {
         setReadyToSubmit(true);
@@ -63,6 +72,7 @@ const Register = ({ history }) => {
     isPrivacyChecked,
     formValues.email,
     formValues.password,
+    formValues.password2,
     getValues
   ]);
 
@@ -147,6 +157,13 @@ const Register = ({ history }) => {
                 name="password"
                 register={() => register("password", passwordValidators)}
                 message={errors.password?.message}
+              />
+              <FormBase.Input
+                type="password"
+                label="Confirm password"
+                name="password2"
+                register={() => register("password2", password2Validators)}
+                message={errors.password2?.message}
               />
               <FormBase.TextCheckbox
                 onChange={() => setPrivacyChecked(prev => !prev)}

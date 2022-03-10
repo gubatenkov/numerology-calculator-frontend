@@ -19,7 +19,13 @@ const useValidators = () => {
     minLength: { value: 8, message: t("PASS_CANT_BE_LESS_8") }
   };
 
-  return [emailValidators, passwordValidators];
+  const password2Validators = {
+    // required: true,
+    // maxLength: 128,
+    // minLength: 8
+  };
+
+  return [emailValidators, passwordValidators, password2Validators];
 };
 
 export default useValidators;

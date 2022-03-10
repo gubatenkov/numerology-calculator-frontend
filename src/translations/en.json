@@ -211,6 +211,7 @@
       "CONTACT": "en_Kontakt"
     },
     "DOWNLOADING_PDF": "en_Das Analyse-PDF wird heruntergeladen...",
-    "FIELD_REQUIRED": "en_Dieses feld ist erforderlich"
+    "FIELD_REQUIRED": "en_Dieses feld ist erforderlich",
+    "PASSWORDS_DONT_MATCH": "en_Passwörter stimmen nicht überein"
   }
 }
